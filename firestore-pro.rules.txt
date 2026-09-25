@@ -1,0 +1,10 @@
+// Acrescente estes blocos DENTRO de match /databases/{database}/documents
+// nas regras atuais. NÃO substitua as regras do ECS/HUB por este arquivo.
+function proTeam() {
+  return request.auth != null && request.auth.token.email in [
+    'alison@fiedler.com.br', 'caua@fiedler.com.br', 'murilo@fiedler.com.br'
+  ];
+}
+match /proWorkspace/{id} { allow read, write: if proTeam(); }
+match /proRecords/{id} { allow read, write: if proTeam(); }
+match /proReports/{id} { allow read, write: if proTeam(); }
